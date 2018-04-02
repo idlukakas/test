@@ -1,7 +1,7 @@
 
 <!-- saved from url=(0052)file:///C:/Users/lukak_000/Desktop/Projeto/test.html -->
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <script src="https://momentjs.com/downloads/moment-with-locales.js"></script>
+    <script src="./test_files/moment-with-locales.js.download"></script>
     <style type="text/css">
         @import url('https://themes.googleusercontent.com/fonts/css?kit=fpjTOVmNbO4Lz34iLyptLVumN3ATOVc2BoeDKcwJhFTljiSzuFEcjsip7pjNdcnF');
         .lst-kix_list_1-3>li:before {
@@ -411,9 +411,9 @@
         <span class="c13">MICROFONES VOLANTES / SOM</span>
     </p>
     <p class="c14">
-        <span class="c8">MÊS JANEIRO/ 2018</span>
+        <span class="c8">MÊS <select id="months" class='c8'></select>
+            / 2018</span>
     </p>
-    
     <a id="t.0"></a>
     <table class="c3">
         <tbody>
@@ -437,7 +437,7 @@
             <tr class="c1">
                 <td class="c4" colspan="1" rowspan="1">
                     <p class="c0">
-                        <span class="c6"></span>
+                        <span class="c6">-</span>
                     </p>
                 </td>
                 <td class="c4" colspan="1" rowspan="1">
@@ -452,13 +452,10 @@
                 </td>
                 <td class="c4" colspan="1" rowspan="1">
                     <p class="c0">
-                        <span class="c6">3</span>
+                        <span class="c6"></span>
                     </p>
                 </td>
             </tr>
-            
-            
-            
             <tr class="c1">
                 <td class="c4 c7" colspan="1" rowspan="1">
                     <p class="c0">
@@ -471,12 +468,10 @@
                     </p>
                 </td>
             </tr>
-            
-            
             <tr class="c1">
                 <td class="c4" colspan="1" rowspan="1">
                     <p class="c0">
-                        <span class="c6"></span>
+                        <span class="c6">-</span>
                     </p>
                 </td>
                 <td class="c4" colspan="1" rowspan="1">
@@ -491,7 +486,7 @@
                 </td>
                 <td class="c4" colspan="1" rowspan="1">
                     <p class="c0">
-                        <span class="c6">3</span>
+                        <span class="c6"></span>
                     </p>
                 </td>
             </tr>
@@ -501,17 +496,16 @@
     <p class="c5 c17">
         <span class="c8"></span>
     </p>
-    <p class="c14">
-        <span class="c8">MÊS MARÇO / 2018</span>
-    </p>
-    
-    
-    
-    
-    
-    
-    
-    
-
-
+    <button>Generate list</button>
+    <button>Print</button>
+    <script>
+        var list = document.getElementById('months');
+        moment.locale('pt-br')
+        moment.months().forEach(item => {
+            let option = document.createElement('option');
+            option.text = item.toUpperCase();
+            list.appendChild(option);
+        });
+        
+    </script>
 </body></html>
