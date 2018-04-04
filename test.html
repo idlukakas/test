@@ -411,13 +411,13 @@
         <span class="c13">MICROFONES VOLANTES / SOM</span>
     </p>
     <p class="c14">
-        <span class="c8">MÊS <select id="months" class='c8'></select>
+        <span class="c8">MÊS <select id="months" class="c8"></select>
             / 2018</span>
     </p>
     <a id="t.0"></a>
-    <table class="c3">
-        <tbody>
-            <tr class="c1">
+    <table class="c3" id="table_month">
+        <tbody id="weekend_table">
+            <tr class="c1 table-header">
                 <td class="c4 c7" colspan="1" rowspan="1">
                     <p class="c0">
                         <span class="c8">DOMINGO</span>
@@ -437,26 +437,28 @@
             <tr class="c1">
                 <td class="c4" colspan="1" rowspan="1">
                     <p class="c0">
-                        <span class="c6">-</span>
+                        <span class="c6" id="weekend"></span>
                     </p>
                 </td>
                 <td class="c4" colspan="1" rowspan="1">
                     <p class="c0">
-                        <span class="c6"></span>
+                        <span class="c6" id="vol1"></span>
                     </p>
                 </td>
                 <td class="c4" colspan="1" rowspan="1">
                     <p class="c0">
-                        <span class="c6"></span>
+                        <span class="c6" id="vol2"></span>
                     </p>
                 </td>
                 <td class="c4" colspan="1" rowspan="1">
                     <p class="c0">
-                        <span class="c6"></span>
+                        <span class="c6" id="som"></span>
                     </p>
                 </td>
             </tr>
-            <tr class="c1">
+        </tbody>
+        <tbody id="week_table">
+            <tr class="c1 table-header" >
                 <td class="c4 c7" colspan="1" rowspan="1">
                     <p class="c0">
                         <span class="c8">QUINTA-FEIRA</span>
@@ -471,34 +473,34 @@
             <tr class="c1">
                 <td class="c4" colspan="1" rowspan="1">
                     <p class="c0">
-                        <span class="c6">-</span>
+                        <span class="c6" id="week"></span>
                     </p>
                 </td>
                 <td class="c4" colspan="1" rowspan="1">
                     <p class="c0">
-                        <span class="c6"></span>
+                        <span class="c6" id="vol1"></span>
                     </p>
                 </td>
                 <td class="c4" colspan="1" rowspan="1">
                     <p class="c0">
-                        <span class="c6"></span>
+                        <span class="c6" id="vol2"></span>
                     </p>
                 </td>
                 <td class="c4" colspan="1" rowspan="1">
                     <p class="c0">
-                        <span class="c6"></span>
+                        <span class="c6" id="som"></span>
                     </p>
                 </td>
             </tr>
-            
         </tbody>
     </table>
     <p class="c5 c17">
         <span class="c8"></span>
     </p>
-    <button>Generate list</button>
+    <button onclick="generateList()">Generate list</button>
     <button>Print</button>
     <script>
+        //Lista todos os meses do ano
         var list = document.getElementById('months');
         moment.locale('pt-br')
         moment.months().forEach(item => {
@@ -507,5 +509,56 @@
             list.appendChild(option);
         });
         
+        function generateList() {
+            var e = document.getElementById('months')        
+            var table_month = document.getElementById('table_month')
+
+            first = e.selectedIndex
+            limit = first + 2
+            for(var i = limit; i >= first; i--) {
+                selectedMonth = e.options[i].value
+                var title = "<p class='c14'>" + 
+                                "<span class='c8'>MÊS " + selectedMonth +
+                                " / 2018</span>" +
+                            "</p>"
+                table_month.insertAdjacentHTML('afterend', title)
+            }
+        }
+       
+
+
+
+        //TO DO: pegar a data primeiro Domingo/Quinta-feira
+        //Final de semana
+        var weekend = document.getElementById('weekend')
+        var firstWeekend = document.createTextNode(moment().format('DD/MM/YYYY'))
+        weekend.appendChild(firstWeekend)
+        //Semana
+        var week = document.getElementById('week')
+        var firstWeek = document.createTextNode(moment().format('DD/MM/YYYY'))
+        week.appendChild(firstWeek)
+
+        //TO DO: Designar automaticamente todos os irmãos
+        var irmaos = ['Lucas Teles', 'Lucas Silvério', 'Caio Rocha', 'Bruno Santos', 'Bruno Serrano']
+        //Criando para o Domingo
+        var vol1 = document.createTextNode(irmaos[0])
+        var vol2 = document.createTextNode(irmaos[1])
+        var som = document.createTextNode(irmaos[3])
+        var vol1Field = document.getElementById('vol1')
+        var vol2Field = document.getElementById('vol2')
+        var somField = document.getElementById('som')
+        vol1Field.appendChild(vol1)
+        vol2Field.appendChild(vol2)
+        somField.appendChild(som)
+        //Criando para a Quinta-feira
+        // var vol1 = document.createTextNode(irmaos[0])
+        // var vol2 = document.createTextNode(irmaos[1])
+        // var som = document.createTextNode(irmaos[3])
+        // var vol1Field = document.getElementById('vol1')
+        // var vol2Field = document.getElementById('vol2')
+        // var somField = document.getElementById('som')
+        // vol1Field.appendChild(vol1)
+        // vol2Field.appendChild(vol2)
+        // somField.appendChild(som)
     </script>
 </body></html>
