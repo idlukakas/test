@@ -501,6 +501,9 @@
     <button>Print</button>
     <script>
         //Lista todos os meses do ano
+        firstSunday = moment('04/01/2018')
+        firstTh = moment('04/05/2018')
+
         var list = document.getElementById('months');
         moment.locale('pt-br')
         moment.months().forEach(item => {
@@ -563,22 +566,40 @@
         }
        
        function setRows() {
-            row = '<tr class="c1">\
-                     <td class="c4" colspan="1" rowspan="1">teste</td>\
-                     <td class="c4" colspan="1" rowspan="1">teste</td>\
-                     <td class="c4" colspan="1" rowspan="1">teste</td>\
-                     <td class="c4" colspan="1" rowspan="1">teste</td>\
-                  </tr>'
             header = document.getElementsByClassName('table-header')
+            var row = ''
+            for(i=0; i<4; i++){
+                row += '<tr class="c1">\
+                        <td class="c4" colspan="1" rowspan="1">'+ firstSunday.format('DD/MM/YYYY') +'</td>\
+                        <td class="c4" colspan="1" rowspan="1">teste</td>\
+                        <td class="c4" colspan="1" rowspan="1">teste</td>\
+                        <td class="c4" colspan="1" rowspan="1">teste</td>\
+                    </tr>'
+                    firstSunday = moment(firstSunday).add(7, 'd')           
+            }
+
             header[0].insertAdjacentHTML('afterend', row)
-            header[0].insertAdjacentHTML('afterend', row)
-            header[0].insertAdjacentHTML('afterend', row)
-            header[0].insertAdjacentHTML('afterend', row)
+            
+            var row = ''
+            
+            for(i=0; i<4; i++){
+                row += '<tr class="c1">\
+                        <td class="c4" colspan="1" rowspan="1">'+ firstTh.format('DD/MM/YYYY') +'</td>\
+                        <td class="c4" colspan="1" rowspan="1">teste</td>\
+                        <td class="c4" colspan="1" rowspan="1">teste</td>\
+                        <td class="c4" colspan="1" rowspan="1">teste</td>\
+                    </tr>'
+                    firstTh = moment(firstTh).add(7, 'd')
+                // header[0].insertAdjacentHTML('afterend', row)
+                // header[1].insertAdjacentHTML('afterend', row)            
+            }
+
+            // header[0].insertAdjacentHTML('afterend', row)
+            // header[0].insertAdjacentHTML('afterend', row)
 
             header[1].insertAdjacentHTML('afterend', row)
-            header[1].insertAdjacentHTML('afterend', row)
-            header[1].insertAdjacentHTML('afterend', row)
-            header[1].insertAdjacentHTML('afterend', row)
+            // header[1].insertAdjacentHTML('afterend', row)
+            // header[1].insertAdjacentHTML('afterend', row)
             
        }
 
